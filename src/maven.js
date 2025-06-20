@@ -134,8 +134,8 @@ async function deploy(logger, mvnw, nextVersion, mavenTarget, settingsPath, clea
               '--no-transfer-progress',
               '-DskipTests'
           ],
-            {},
-            verboseMaven
+          {},
+          verboseMaven
         );
     } catch (e) {
         logger.error('Failed to deploy to maven');
