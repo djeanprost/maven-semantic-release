@@ -29,10 +29,11 @@ function settingsOption(settingsPath) {
  * @param {string|undefined} settingsPath
  * @param {boolean} processAllModules
  * @param {boolean} debug
+ * @param {import("./plugin-config").PluginConfig} pluginConfig
  * @returns {Promise<void>}
  * @private
  */
-async function updateVersion(logger, mvnw, versionStr, settingsPath, processAllModules, debug) {
+async function updateVersion(logger, mvnw, versionStr, settingsPath, processAllModules, debug, pluginConfig) {
     logger.log(`Updating pom.xml to version ${versionStr}`);
 
     const command = mvnw ? './mvnw' : 'mvn';
@@ -51,7 +52,9 @@ async function updateVersion(logger, mvnw, versionStr, settingsPath, processAllM
                 '-DgenerateBackupPoms=false',
                 `-DnewVersion=${versionStr}`,
                 ...processAllModulesOption
-            ]
+            ],
+            {},
+            pluginConfig?.verboseMaven // pass echo flag if available
         );
     } catch (e) {
         logger.error('Failed to update version');
