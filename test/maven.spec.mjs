@@ -23,7 +23,7 @@ describe('maven', () => {
     });
 
     test('updateVersion with all options off', () => {
-        updateVersion(logger, false, '1.1.1', undefined, false, false, pluginConfig);
+        updateVersion(logger, false, '1.1.1', undefined, false, false, false);
         expect(exec).toHaveBeenCalledWith(
             'mvn',
             [
@@ -41,7 +41,7 @@ describe('maven', () => {
     });
 
     test('updateVersion with all options on', () => {
-        updateVersion(logger, true,  '1.1.2', 'some/path', true, true, pluginConfig);
+        updateVersion(logger, true,  '1.1.2', 'some/path', true, true, true);
         expect(exec).toHaveBeenCalledWith(
             './mvnw',
             [
@@ -63,7 +63,7 @@ describe('maven', () => {
     });
 
     test('updateSnapshotVersion with all options off', () => {
-        updateSnapshotVersion(logger, false, undefined, false, false);
+        updateSnapshotVersion(logger, false, undefined, false, false, false);
 
         expect(exec).toHaveBeenCalledWith(
             'mvn',
@@ -82,7 +82,7 @@ describe('maven', () => {
     });
 
     test('updateSnapshotVersion with all options on', () => {
-        updateSnapshotVersion(logger, true,  'some/path', true, true);
+        updateSnapshotVersion(logger, true,  'some/path', true, true, true);
 
         expect(exec).toHaveBeenCalledWith(
         './mvnw',
@@ -105,7 +105,7 @@ describe('maven', () => {
     });
 
     test('deploy with all options off', () => {
-        deploy(logger, false, '1.1.3', 'deploy', undefined, false, false);
+        deploy(logger, false, '1.1.3', 'deploy', undefined, false, false, false);
 
         expect(exec).toHaveBeenCalledWith(
             'mvn',
@@ -123,7 +123,7 @@ describe('maven', () => {
     });
 
     test('deploy with all options on', () => {
-        deploy(logger, true, '1.1.4', 'deploy jib:build', 'some/path', true, true);
+        deploy(logger, true, '1.1.4', 'deploy jib:build', 'some/path', true, true, true);
 
         expect(exec).toHaveBeenCalledWith(
             './mvnw',

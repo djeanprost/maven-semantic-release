@@ -26,7 +26,7 @@ describe('verboseMaven config', () => {
     });
 
     it('should NOT echo maven commands by default', async () => {
-        await updateVersion(logger, false, '1.2.3', undefined, false, false, pluginConfigBase);
+        await updateVersion(logger, false, '1.2.3', undefined, false, false, false);
         expect(execMock).toHaveBeenCalledWith(
             'mvn',
             expect.any(Array),
@@ -37,7 +37,7 @@ describe('verboseMaven config', () => {
 
     it('should echo maven commands when verboseMaven is true', async () => {
         const pluginConfig = { ...pluginConfigBase, verboseMaven: true };
-        await updateVersion(logger, false, '1.2.3', undefined, false, false, pluginConfig);
+        await updateVersion(logger, false, '1.2.3', undefined, false, false, true);
         expect(execMock).toHaveBeenCalledWith(
             'mvn',
             expect.any(Array),
