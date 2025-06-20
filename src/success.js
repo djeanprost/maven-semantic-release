@@ -15,8 +15,8 @@ const {
 const { glob } = require("glob");
 
 /**
- * @param {import("./plugin-config").PluginConfig} pluginConfig
- * @param {import("semantic-release").Context & { cwd: string }} context
+ * @param {import('./plugin-config').PluginConfig} pluginConfig
+ * @param {object} context
  * @returns {Promise<void>}
  */
 module.exports = async function success(pluginConfig, {

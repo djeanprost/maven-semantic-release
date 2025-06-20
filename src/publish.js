@@ -9,8 +9,8 @@ const {
 const SemanticReleaseError = require("@semantic-release/error");
 
 /**
- * @param {import("./plugin-config").PluginConfig} pluginConfig
- * @param {import("semantic-release").Context} context
+ * @param {import('./plugin-config').PluginConfig} pluginConfig
+ * @param {object} context
  * @returns {Promise<void>}
  */
 module.exports = async function publish(pluginConfig, {

@@ -6,6 +6,16 @@ jest.mock('../src/exec.js');
 
 describe('maven', () => {
     const logger = { log: jest.fn(), error: jest.fn() };
+    const pluginConfig = {
+        processAllModules: false,
+        mavenTarget: /** @type {import('../src/plugin-config.js').MavenTarget} */ ('deploy'),
+        clean: true,
+        updateSnapshotVersion: false,
+        snapshotCommitMessage: '',
+        debug: false,
+        mvnw: false,
+        verboseMaven: false
+    };
 
     afterEach(() => {
         logger.log.mockClear();
@@ -13,7 +23,7 @@ describe('maven', () => {
     });
 
     test('updateVersion with all options off', () => {
-        updateVersion(logger, false, '1.1.1', undefined, false, false);
+        updateVersion(logger, false, '1.1.1', undefined, false, false, pluginConfig);
         expect(exec).toHaveBeenCalledWith(
             'mvn',
             [
@@ -31,7 +41,7 @@ describe('maven', () => {
     });
 
     test('updateVersion with all options on', () => {
-        updateVersion(logger, true,  '1.1.2', 'some/path', true, true);
+        updateVersion(logger, true,  '1.1.2', 'some/path', true, true, pluginConfig);
         expect(exec).toHaveBeenCalledWith(
             './mvnw',
             [
